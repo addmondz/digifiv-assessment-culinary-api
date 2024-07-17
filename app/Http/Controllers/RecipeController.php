@@ -43,7 +43,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::all();
+        $recipes = Recipe::with(['chef','collections','tags'])->get();
         return response()->json($recipes);
     }
 

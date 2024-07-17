@@ -260,7 +260,7 @@ class TagController extends Controller
      *     ),
      * )
      */
-    public function addTagToRecipe($recipeId, $tagId)
+    public function addTagToRecipe($tagId, $recipeId)
     {
         $recipe = Recipe::findOrFail($recipeId);
         $tag = Tag::findOrFail($tagId);
@@ -269,7 +269,7 @@ class TagController extends Controller
             return response()->json(['message' => 'Tag already added to recipe.'], 200);
         }
 
-        $recipe->tags()->attach($tagId);
+        $recipe->tags()->attach($tag);
 
         return response()->json(['message' => 'Tag added to recipe successfully.'], 200);
     }
